@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+title: kustomize-iac-skeleton
+authors:
+  - name: "Angel Campos Muñoz"
+    given-names: Angel
+    family-names: Angel
+    email: angel.campos.m@outlook.com
+    affiliation: RIU Hotels & Resorts
+    city: Palma
+    country: ES
+    orcid: 'https://orcid.org/0000-0003-0337-4967'
+    website: https://github.com/angelcamposm
+date-released: '2024-08-10'
+identifiers:
+  - type: url
+    value: 'https://github.com/angelcamposm/kustomize-iac-skeleton'
+    description: >-
+      This repository provides a foundational structure for Kubernetes 
+      deployments, serving as a starting point for rapid application 
+      deployment.
+keywords:
+  - kustomize
+  - kustomization
+  - kubernetes
+  - iac
+  - infrastructure-as-code
+  - skeleton
+license: MIT
+license-url: https://opensource.org/license/mit
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+repository-code: 'https://github.com/angelcamposm/kustomize-iac-skeleton'
+version: 1.0.0
