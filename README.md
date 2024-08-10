@@ -1,10 +1,10 @@
 # kustomize-iac-skeleton
 
-Kustomization Skeleton Repository
+[Kustomization](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/) Skeleton Repository
 
 This repository provides a foundational structure for Kubernetes deployments, serving as a starting point for rapid application deployment. It includes a pre-configured Kustomization overlay with essential resources like Deployments, Services, ConfigMaps, and Secrets, providing a solid base for building complex applications.
 
-Think of this as a "skeleton" of your Kubernetes infrastructure, ready to be fleshed out with your specific application requirements. Customize and extend the provided resources to match your application's needs without starting from scratch.
+Think of this as a "skeleton" of your [Kubernetes](https://kubernetes.io) infrastructure, ready to be fleshed out with your specific application requirements. Customize and extend the provided resources to match your application's needs without starting from scratch.
 
 By leveraging this repository, you can significantly accelerate your deployment cycles while maintaining consistency and best practices.
 
@@ -58,9 +58,13 @@ YAML itself is easy to understand and debug when things go wrong. Pair that with
 
 Specifies the most common resources for the project.
 
-As a good practice, the `base` layer can't contain patches.
+As a good practice, the `base` layer can't contains any patches.
 
 ### components
+
+The `components` directory contains any [Kustomize component](https://kubectl.docs.kubernetes.io/guides/config_management/components/) that is agnostic from any environment and adds capabilities for an specific environment.
+
+Any component created inside this directory, can be referenced using `components` node in the Kustomization file in any overlay.
 
 ### config
 
@@ -70,7 +74,7 @@ Each of the layers in this directory gives us an idea of the final result of the
 
 ###  overlays
 
-The overlay directory holds environment-specific settings. Within this directory there are as many overlays as required environments.
+The `overlays` directory holds environment-specific settings. Within this directory there are as many overlays as required environments.
 
 In an overlay, there are 3 directories:
 
@@ -82,7 +86,7 @@ In an overlay, there are 3 directories:
 
 The `patches` directory holds any file that can add or override fields on resources.
 
-Any file created inside this directory, can be referenced using `patches` node.
+Any file created inside this directory, can be referenced using `patches` node in the Kustomization file.
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -100,6 +104,8 @@ patches:
 
 The `replacements` directory holds any file that are used to copy fields from one source into any number of specified targets.
 
+Any file created inside this directory, can be referenced using `replacements` node in the Kustomization file.
+
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -111,6 +117,8 @@ replacements:
 #### resources
 
 The `resources` directory holds any new resource that must be included in the overlay.
+
+Any file created inside this directory, can be referenced using `resources` node in the Kustomization file.
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
