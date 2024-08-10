@@ -16,6 +16,17 @@ Key Features:
 - Clear documentation and examples
 - Promotes best practices for Kubernetes deployments
 
+## Benefits of using Kustomize
+
+1. **Reusability**  
+Kustomize allows you to reuse one base file across all of your environments (development, staging, production) and then overlay unique specifications for each.
+
+2. **Fast Generation**  
+Since Kustomize has no templating language, you can use standard YAML to quickly declare your configurations.
+
+3. **Easier to Debug**  
+YAML itself is easy to understand and debug when things go wrong. Pair that with the fact that your configurations are isolated in patches, and you’ll be able to triangulate the root cause of performance issues in no time. Simply compare performance to your base configuration and any other variations that are running.
+
 ## Structure
 
 ```text
@@ -45,15 +56,69 @@ Key Features:
 
 ### base
 
+Specifies the most common resources for the project.
+
+As a good practice, the `base` layer can't contain patches.
+
 ### components
 
 ### config
 
-### overlays
+The `config` directory in the root of the project, holds each of the layers and resources generated in the build process with the `make build` command. 
 
-- **patches**:
-- **replacements**:
-- **resources**:
+Each of the layers in this directory gives us an idea of the final result of the build process and allows us to review what will be applied using the `kubectl apply -k config/<overlay>` command.
+
+###  overlays
+
+The overlay directory holds environment-specific settings. Within this directory there are as many overlays as required environments.
+
+In an overlay, there are 3 directories:
+
+- patches
+- replacements
+- resources
+
+#### patches
+
+The `patches` directory holds any file that can add or override fields on resources.
+
+Any file created inside this directory, can be referenced using `patches` node.
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+patches:
+  - path: patches/update-revision-history-limit-patch.yaml
+    target:
+      group: apps
+      kind: Deployment
+      version: v1
+```
+
+#### replacements
+
+The `replacements` directory holds any file that are used to copy fields from one source into any number of specified targets.
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+replacements:
+  - replacements/update-revision-history-limit-patch.yaml
+```
+
+#### resources
+
+The `resources` directory holds any new resource that must be included in the overlay.
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - resources/pvc.yaml
+```
 
 ## Maintainers
 
