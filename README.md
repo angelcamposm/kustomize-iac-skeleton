@@ -4,7 +4,7 @@
 
 This repository provides a foundational structure for Kubernetes deployments, serving as a starting point for rapid application deployment. It includes a pre-configured Kustomization overlay with essential resources like Deployments, Services, ConfigMaps, and Secrets, providing a solid base for building complex applications.
 
-Think of this as a "skeleton" of your [Kubernetes](https://kubernetes.io) infrastructure, ready to be fleshed out with your specific application requirements. Customize and extend the provided resources to match your application's needs without starting from scratch.
+Think of this as a "skeleton" of your [Kubernetes](https://kubernetes.io) infrastructure, ready to be fleshed out with your specific application requirements. Customize and extend the provided resources to match your application needs without starting from scratch.
 
 By leveraging this repository, you can significantly accelerate your deployment cycles while maintaining consistency and best practices.
 
