@@ -128,6 +128,86 @@ resources:
   - resources/pvc.yaml
 ```
 
+
+## Usage
+
+### Build resources
+
+For build all resources in all overlays, you can use make.
+
+```shell
+make build
+```
+
+This will build all overlays and output the resulting resources to `config/` directory.
+
+### Validate resources
+
+To validate the resources generated through the build process with `make validate` command, we use [kubeconform](https://github.com/yannh/kubeconform) tool under the hood.
+
+```shell
+make validate
+```
+
+This output will be printed on successful validation.
+
+```
+Check for installed tools
+ - kubeconform [OK]
+
+Validating all resources using Kubeconform
+ - DEV
+
+Validating DEV overlay resources
+{
+  "resources": [],
+  "summary": {
+    "valid": 4,
+    "invalid": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}
+```
+
+This output will be printed on failed validation.
+
+```
+Check for installed tools
+ - kubeconform [OK]
+
+Validating all resources using Kubeconform
+ - DEV
+
+Validating DEV overlay resources
+{
+  "resources": [
+    {
+      "filename": "config/dev/apps_v1_deployment_my-awesome-application.yaml",
+      "kind": "Deployment",
+      "name": "my-awesome-application",
+      "version": "apps/v2",
+      "status": "statusError",
+      "msg": "could not find schema for Deployment"
+    }
+  ],
+  "summary": {
+    "valid": 3,
+    "invalid": 0,
+    "errors": 1,
+    "skipped": 0
+  }
+}
+```
+
+## Requirements
+
+These are the tools needed to take advantage of the full potential of this skeleton package.
+
+- [kustomize](https://github.com/kubernetes-sigs/kustomize) <sup>(required)</sup>
+- [kubeconform](https://github.com/yannh/kubeconform) (Only required if you will validate kubernetes resources with this tool)
+- [make](https://www.gnu.org/software/make/) (Only required if you run make commands)
+
 ## Maintainers
 
 - 🧑‍💻 Angel Campos Muñoz
