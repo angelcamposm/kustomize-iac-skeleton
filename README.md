@@ -61,20 +61,28 @@ Here are some [Kustomize](https://github.com/kubernetes-sigs/kustomize) best pra
 ├── config
 │   └── dev
 ├── overlays
-│   └── dev
+│   ├── dev
+│   │   ├── patches
+│   │   ├── replacements
+│   │   ├── resources
+│   │   └── kustomization.yaml
+│   └── pro
 │       ├── patches
 │       ├── replacements
 │       ├── resources
 │       └── kustomization.yaml
 ├── .editorconfig
+├── .gitattributes
 ├── .gitignore
 ├── CHANGELOG.md
 ├── CITATION.cff
+├── CODE_OF_CONDUCT.md
 ├── CODEOWNERS
 ├── CONTRIBUTING.md
 ├── LICENSE.md
 ├── Makefile
 └── README.md
+└── SECURITY.md
 ```
 
 ### base
