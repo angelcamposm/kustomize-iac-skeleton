@@ -2,6 +2,8 @@
 
 [Kustomization](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/) Skeleton Repository
 
+## About
+
 This repository provides a foundational structure for Kubernetes deployments, serving as a starting point for rapid application deployment. It includes a pre-configured Kustomization overlay with essential resources like Deployments, Services, ConfigMaps, and Secrets, providing a solid base for building complex applications.
 
 Think of this as a "skeleton" of your [Kubernetes](https://kubernetes.io) infrastructure, ready to be fleshed out with your specific application requirements. Customize and extend the provided resources to match your application needs without starting from scratch.
@@ -18,14 +20,35 @@ Key Features:
 
 ## Benefits of using Kustomize
 
-1. **Reusability**  
+Below are some of the benefits of Kustomize.
+
+1. **Simplified Configuration Management**:  
+Kustomize is easy to use and allows you to manage and customize your Kubernetes configurations in a structured and modular way.
+
+2. **Reusability**:  
 Kustomize allows you to reuse one base file across all of your environments (development, staging, production) and then overlay unique specifications for each.
 
-2. **Fast Generation**  
-Since Kustomize has no templating language, you can use standard YAML to quickly declare your configurations.
+3. **Version Control**:  
+Kustomize files are plain text files, so you can use a `git` repository to version control your Kubernetes configurations, making it easier to track changes and roll back to previous versions when necessary.
 
-3. **Easier to Debug**  
+4. **Template Free**:  
+Kustomize provides a solution for customizing Kubernetes resource configuration free from templates and DSLs. Only raw `YAML` files.
+
+5. **Extendability**:  
+Kustomize has buil-in transformers to modify resources and It can be extended with a plug-in mechanism.
+
+6. **Easier to Debug**  
 YAML itself is easy to understand and debug when things go wrong. Pair that with the fact that your configurations are isolated in patches, and you’ll be able to triangulate the root cause of performance issues in no time. Simply compare performance to your base configuration and any other variations that are running.
+
+## Best Practices
+
+Here are some [Kustomize](https://github.com/kubernetes-sigs/kustomize) best practices:
+
+1. Keep base resources, overlays and patches in separate directories. This helps us to maintain clarity between different configurations.
+2. Adhere to Kubernetes best practices.
+3. Keep the common resources like `Namespace` resource in the `base` directory.
+4. Before deploying your Kustomize IaC, validate It.
+
 
 ## Structure
 
@@ -128,18 +151,33 @@ resources:
   - resources/pvc.yaml
 ```
 
-
 ## Usage
 
 ### Build resources
 
-For build all resources in all overlays, you can use make.
+For build all overlays, you can execute `make build` command. We use [kustomize](https://github.com/kubernetes-sigs/kustomize) tool under the hood.
 
 ```shell
 make build
 ```
 
-This will build all overlays and output the resulting resources to `config/` directory.
+This command will launch a build process that will build all the overlays present in the `overlays/` directory and store the generated resources in the `config/` directory.
+
+```text
+Check for installed tools
+ - kustomize [OK]
+
+Build all overlays for the project
+
+Building DEV overlay
+ - Running kustomize build on dev overlay
+
+
+Building PRO overlay
+ - Create config directory for PRO overlay
+ - Running kustomize build on pro overlay
+
+```
 
 ### Validate resources
 
@@ -151,7 +189,7 @@ make validate
 
 This output will be printed on successful validation.
 
-```
+```json
 Check for installed tools
  - kubeconform [OK]
 
@@ -169,10 +207,10 @@ Validating DEV overlay resources
   }
 }
 ```
-
+  
 This output will be printed on failed validation.
 
-```
+```json
 Check for installed tools
  - kubeconform [OK]
 
