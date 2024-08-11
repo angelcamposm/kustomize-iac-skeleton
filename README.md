@@ -189,7 +189,7 @@ make validate
 
 This output will be printed on successful validation.
 
-```json
+```text
 Check for installed tools
  - kubeconform [OK]
 
@@ -210,7 +210,7 @@ Validating DEV overlay resources
   
 This output will be printed on failed validation.
 
-```json
+```text
 Check for installed tools
  - kubeconform [OK]
 
