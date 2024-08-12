@@ -191,7 +191,7 @@ Building PRO overlay
 
 ### Lint project resources
 
-You can lint all YAML files to check syntax and correct problems such as lines length, trailing spaces, indentation, etc.
+You can lint all YAML files to check syntax and correct problems such as lines length, trailing spaces, indentation, etc. We use [yamllint](https://github.com/adrienverge/yamllint) tool under the hood.
 
 ```shell
 make lint
@@ -288,7 +288,8 @@ These are the tools needed to take advantage of the full potential of this skele
 - [kustomize](https://github.com/kubernetes-sigs/kustomize) <sup>(required)</sup>
 - [kubeconform](https://github.com/yannh/kubeconform) (Only required if you will validate kubernetes resources with this tool)
 - [make](https://www.gnu.org/software/make/) (Only required if you run make commands)
-- [yamllint](https://github.com/adrienverge/yamllint) (Only required if you run lint files)
+- [python3](https://www.python.org/) (Only required if you run lint over YAML files)
+- [yamllint](https://github.com/adrienverge/yamllint) (Only required if you run lint over YAML files)
 
 ## Maintainers
 
