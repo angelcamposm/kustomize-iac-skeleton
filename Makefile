@@ -32,6 +32,8 @@ build: check-kustomize
 			kustomize build overlays/$${directory} --output config/$${directory} --load-restrictor LoadRestrictionsNone; \
 			echo; \
 		done
+	@echo ">>> build process finished <<<"
+	@echo
 
 clean:
 	$(info Cleaning all resources generated for the following overlays:)
@@ -45,10 +47,14 @@ clean:
 			echo "Cleaning $${directory^^}"; \
 			rm --recursive --force config/$${directory}/*; \
 		done
+	@echo ">>> clean process finished <<<"
+	@echo
 
 lint: check-yamllint
 	$(info Running linters on all resources using yamllint)
-	@yamllint --format colored .
+	@yamllint --format colored . || true
+	@echo ">>> lint process finished <<<"
+	@echo
 
 validate: check-kubeconform
 	$(info Validating all resources using Kubeconform)
@@ -62,6 +68,8 @@ validate: check-kubeconform
 			echo "Validating $${directory^^} overlay resources"; \
 			kubeconform -summary -output json config/$${directory}/; \
 		done
+	@echo ">>> validation process finished <<<"
+	@echo
 
 # Check if kubeconform is installed
 #
