@@ -1,0 +1,9 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: my-awesome-aplication
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.acampos.local/name: my-awesome-application
