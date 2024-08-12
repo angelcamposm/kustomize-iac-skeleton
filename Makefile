@@ -2,6 +2,7 @@
 
 KUBECONFORM_TOOL := $(shell command -v kubeconform)
 KUSTOMIZE_TOOL := $(shell command -v kustomize)
+YAMLLINT_TOOL := $(shell command -v yamllint)
 
 .PHONY: help build clean
 
@@ -11,6 +12,7 @@ help:
 	@echo
 	@echo "  build       to build an overlay"
 	@echo "  clean       to clean a config generated overlay"
+	@echo "  lint        to lint YAML files"
 	@echo "  validate    to validate a previously generated resources"
 	@echo
 
@@ -43,6 +45,10 @@ clean:
 			echo "Cleaning $${directory^^}"; \
 			rm --recursive --force config/$${directory}/*; \
 		done
+
+lint: check-yamllint
+	$(info Running linters on all resources using yamllint)
+	@yamllint --format colored .
 
 validate: check-kubeconform
 	$(info Validating all resources using Kubeconform)
@@ -80,6 +86,19 @@ check-kustomize: tools-check
 else
 check-kustomize: tools-check
 	@echo " - kustomize [OK]"
+	@echo
+endif
+
+# Check if yamllint is installed
+#
+ifeq ("$(YAMLLINT_TOOL)", "")
+check-yamllint: tools-check
+	$(info You must install yamllint before linting)
+	$(info Please visit: "https://github.com/adrienverge/yamllint")
+	$(error Missing tool yamllint)
+else
+check-yamllint: tools-check
+	@echo " - yamllint [OK]"
 	@echo
 endif
 
