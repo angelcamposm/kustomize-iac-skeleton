@@ -7,3 +7,9 @@ labels:
       app.acampos.local/name: my-awesome-application
     includeSelectors: true
     includeTemplates: true
+
+resources:
+  - resources/namespace.yaml
+  - resources/deployment.yaml
+  - resources/service-account.yaml
+  - resources/service.yaml
