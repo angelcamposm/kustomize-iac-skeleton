@@ -16,3 +16,8 @@ labels:
 resources:
   - ../../base
   - resources/pod-disruption-budget.yaml
+
+components:
+  - git@github.com:angelcamposm/krm-taints-and-tolerations-component.git
+  - git@github.com:angelcamposm/krm-pod-topology-spread-component.git
+  - git@github.com:angelcamposm/krm-node-affinity-component.git
