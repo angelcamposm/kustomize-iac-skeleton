@@ -1,0 +1,7 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  labels:
+    kubernetes.io/metadata.name: components-test
+    pod-security.kubernetes.io/enforce: baseline
+  name: kustomize-iac-skeleton
