@@ -178,6 +178,7 @@ Check for installed tools
 Build all overlays for the project
 
 Building DEV overlay
+ - Create config directory for DEV overlay
  - Running kustomize build on dev overlay
 
 
@@ -185,6 +186,40 @@ Building PRO overlay
  - Create config directory for PRO overlay
  - Running kustomize build on pro overlay
 
+>>> build process finished <<<
+```
+
+### Lint project resources
+
+You can lint all YAML files to check syntax and correct problems such as lines length, trailing spaces, indentation, etc.
+
+```shell
+make lint
+```
+
+This output will be printed on successful lint.
+
+```text
+Check for installed tools
+ - yamllint [OK]
+
+Running linters on all resources using yamllint
+>>> lint process finished <<<
+```
+
+This output will be printed on when lint fails.
+
+```text
+Check for installed tools
+ - yamllint [OK]
+
+Running linters on all resources using yamllint
+./config/pro/apps_v1_deployment_my-awesome-application.yaml
+  1:1       warning  found forbidden document start "---"  (document-start)
+  56:13     error    trailing spaces  (trailing-spaces)
+  95:41     error    no new line character at the end of file  (new-line-at-end-of-file)
+
+>>> lint process finished <<<
 ```
 
 ### Validate resources
@@ -253,6 +288,7 @@ These are the tools needed to take advantage of the full potential of this skele
 - [kustomize](https://github.com/kubernetes-sigs/kustomize) <sup>(required)</sup>
 - [kubeconform](https://github.com/yannh/kubeconform) (Only required if you will validate kubernetes resources with this tool)
 - [make](https://www.gnu.org/software/make/) (Only required if you run make commands)
+- [yamllint](https://github.com/adrienverge/yamllint) (Only required if you run lint files)
 
 ## Maintainers
 
