@@ -15,6 +15,7 @@ labels:
 
 resources:
   - ../../base
+  - resources/horizontal-pod-autoscaler.yaml
   - resources/persistent-volume-claim.yaml
   - resources/pod-disruption-budget.yaml
 
