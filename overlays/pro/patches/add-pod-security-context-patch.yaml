@@ -12,4 +12,3 @@
         - ALL
     readOnlyRootFilesystem: true
     runAsNonRoot: true
-
