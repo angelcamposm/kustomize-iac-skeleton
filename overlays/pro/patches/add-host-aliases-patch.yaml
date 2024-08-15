@@ -1,0 +1,7 @@
+- op: add
+  path: /spec/template/spec/containers/0/hostAliases
+  value:
+    - ip: "127.0.0.1"
+      hostnames:
+        - foo.local
+        - bar.local
