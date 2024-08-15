@@ -1,0 +1,11 @@
+# yamlfmt is an extensible command line tool or library to format yaml files.
+#
+# Get it from: https://github.com/google/yamlfmt/releases
+#
+formatter:
+  type: basic
+  indentless_arrays: false
+include:
+  - config/**/*.{yaml,yml}
+indent: 2
+line_ending: lf
