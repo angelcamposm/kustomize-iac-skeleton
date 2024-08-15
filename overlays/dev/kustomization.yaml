@@ -15,3 +15,10 @@ labels:
 
 resources:
   - ../../base
+
+patches:
+  - path: patches/add-storage-volume-patch.yaml
+    target:
+      group: apps
+      kind: Deployment
+      version: v1
