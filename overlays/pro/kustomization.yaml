@@ -15,9 +15,17 @@ labels:
 
 resources:
   - ../../base
+  - resources/persistent-volume-claim.yaml
   - resources/pod-disruption-budget.yaml
 
 components:
   - git@github.com:angelcamposm/krm-taints-and-tolerations-component.git
   - git@github.com:angelcamposm/krm-pod-topology-spread-component.git
   - git@github.com:angelcamposm/krm-node-affinity-component.git
+
+patches:
+  - path: patches/add-storage-volume-patch.yaml
+    target:
+      group: apps
+      kind: Deployment
+      version: v1
