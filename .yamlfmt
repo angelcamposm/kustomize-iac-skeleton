@@ -6,6 +6,6 @@ formatter:
   type: basic
   indentless_arrays: false
 include:
-  - config/**/*.{yaml,yml}
+  - config/
 indent: 2
 line_ending: lf
