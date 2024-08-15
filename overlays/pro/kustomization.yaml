@@ -35,6 +35,11 @@ patches:
       group: apps
       kind: Deployment
       version: v1
+  - path: patches/add-pod-security-context-patch.yaml
+    target:
+      group: apps
+      kind: Deployment
+      version: v1
   - path: patches/add-storage-volume-patch.yaml
     target:
       group: apps

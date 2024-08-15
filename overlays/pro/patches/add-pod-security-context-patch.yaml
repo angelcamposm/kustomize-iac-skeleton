@@ -1,0 +1,15 @@
+- op: add
+  path: /spec/template/spec/securityContext
+  value:
+    runAsUser: 1000
+    runAsGroup: 1000
+- op: add
+  path: /spec/template/spec/containers/0/securityContext
+  value:
+    allowPrivilegeEscalation: false
+    capabilites:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+
