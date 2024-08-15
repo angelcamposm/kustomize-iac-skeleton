@@ -189,6 +189,22 @@ Building PRO overlay
 >>> build process finished <<<
 ```
 
+### Format YAML resources
+
+You can run code formatters to format YAML files to a standarized format. We use [yamlfmt](https://github.com/google/yamlfmt) tool under the hood.
+
+```shell
+make format
+```
+
+```text
+Check for installed tools
+ - yamlfmt [OK]
+
+Running YAML formatters on all resources using yamlfmt
+>>> YAML format finished <<<
+```
+
 ### Lint project resources
 
 You can lint all YAML files to check syntax and correct problems such as lines length, trailing spaces, indentation, etc. We use [yamllint](https://github.com/adrienverge/yamllint) tool under the hood.
@@ -289,6 +305,7 @@ These are the tools needed to take advantage of the full potential of this skele
 - [kubeconform](https://github.com/yannh/kubeconform) (Only required if you will validate kubernetes resources with this tool)
 - [make](https://www.gnu.org/software/make/) (Only required if you run make commands)
 - [python3](https://www.python.org/) (Only required if you run lint over YAML files)
+- [yamlfmt](https://github.com/google/yamlfmt) (Only required if you run format over YAML files)
 - [yamllint](https://github.com/adrienverge/yamllint) (Only required if you run lint over YAML files)
 
 ## Maintainers
