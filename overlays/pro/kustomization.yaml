@@ -25,6 +25,11 @@ components:
   - git@github.com:angelcamposm/krm-node-affinity-component.git
 
 patches:
+  - path: patches/add-environment-variables-patch.yaml
+    target:
+      group: apps
+      kind: Deployment
+      version: v1
   - path: patches/add-storage-volume-patch.yaml
     target:
       group: apps

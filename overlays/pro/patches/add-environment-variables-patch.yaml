@@ -1,0 +1,31 @@
+# Using downward API, you can use environment variables to expose Pod fields,
+# container fields, or both.
+#
+- op: add
+  path: /spec/template/spec/containers/0/env/-
+  value:
+    name: POD_NAME
+    valueFrom:
+      fieldRef:
+        fieldPath: metadata.name
+- op: add
+  path: /spec/template/spec/containers/0/env/-
+  value:
+    name: POD_NAMESPACE
+    valueFrom:
+      fieldRef:
+        fieldPath: metadata.namespace
+- op: add
+  path: /spec/template/spec/containers/0/env/-
+  value:
+    name: POD_IP
+    valueFrom:
+      fieldRef:
+        fieldPath: status.podIP
+- op: add
+  path: /spec/template/spec/containers/0/env/-
+  value:
+    name: POD_SERVICE_ACCOUNT
+    valueFrom:
+      fieldRef:
+        fieldPath: spec.serviceAccountName
