@@ -20,7 +20,7 @@ help:
 
 build: check-kustomize
 	$(info Build all overlays for the project)
-	for directory in `ls -L overlays`; \
+	@for directory in `ls -L overlays`; \
 		do \
 			echo; \
 			echo "Building $${directory^^} overlay"; \
