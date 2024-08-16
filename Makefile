@@ -6,7 +6,7 @@ TRIVY_TOOL := $(shell command -v trivy)
 YAMLFMT_TOOL := $(shell command -v yamlfmt)
 YAMLLINT_TOOL := $(shell command -v yamllint)
 
-.PHONY: help build clean
+.PHONY: help build clean format lint scan validate
 
 help:
 	@echo
@@ -16,6 +16,7 @@ help:
 	@echo "  clean       to clean a config generated overlay"
 	@echo "  format      to apply formatters to generated resources"
 	@echo "  lint        to lint YAML files"
+	@echo "  scan        to run security scanners to generated resources"
 	@echo "  validate    to validate a previously generated resources"
 	@echo
 
@@ -67,7 +68,7 @@ lint: check-yamllint
 
 scan: check-trivy
 	$(info Running security scan on all resources using trivy)
-	@trivy fs --scanners vuln,secret,misconfig config/
+	@trivy fs --config .trivy.yaml config/
 	@echo ">>> security scan finished <<<"
 	@echo
 
