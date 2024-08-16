@@ -238,6 +238,77 @@ Running linters on all resources using yamllint
 >>> lint process finished <<<
 ```
 
+### Security Scan
+
+You can run security scans on your IaC YAML files to find vulnerabilities and IaC misconfigurations, SBOM discovery, Kubernetes security risks, and much more. 
+
+We use [trivy](https://github.com/aquasecurity/trivy) tool under the hood.
+
+```shell
+make scan
+```
+
+This output will be printed when no problem is found in your IaC resources.
+
+```text
+Check for installed tools
+ - trivy [OK]
+
+Running security scan on all resources using trivy
+2024-08-16T14:44:00+02:00       INFO    [vuln] Vulnerability scanning is enabled
+2024-08-16T14:44:00+02:00       INFO    [misconfig] Misconfiguration scanning is enabled
+2024-08-16T14:44:00+02:00       INFO    [secret] Secret scanning is enabled
+2024-08-16T14:44:00+02:00       INFO    [secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2024-08-16T14:44:00+02:00       INFO    [secret] Please see also https://aquasecurity.github.io/trivy/v0.54/docs/scanner/secret#recommendation for faster secret detection      
+2024-08-16T14:44:01+02:00       INFO    Number of language-specific files       num=0
+2024-08-16T14:44:01+02:00       INFO    Detected config files   num=7
+>>> security scan finished <<<
+
+```
+
+This output will be printed on when [trivy](https://trivy.dev) founds any issue.
+
+```text
+Check for installed tools
+ - trivy [OK]
+
+Running security scan on all resources using trivy
+2024-08-16T14:44:00+02:00       INFO    [vuln] Vulnerability scanning is enabled
+2024-08-16T14:44:00+02:00       INFO    [misconfig] Misconfiguration scanning is enabled
+2024-08-16T14:44:00+02:00       INFO    [secret] Secret scanning is enabled
+2024-08-16T14:44:00+02:00       INFO    [secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2024-08-16T14:44:00+02:00       INFO    [secret] Please see also https://aquasecurity.github.io/trivy/v0.54/docs/scanner/secret#recommendation for faster secret detection      
+2024-08-16T14:44:01+02:00       INFO    Number of language-specific files       num=0
+2024-08-16T14:44:01+02:00       INFO    Detected config files   num=7
+
+pro/apps_v1_deployment_my-awesome-application.yaml (kubernetes)
+
+Tests: 95 (SUCCESSES: 94, FAILURES: 1, EXCEPTIONS: 0)
+Failures: 2 (UNKNOWN: 0, LOW: 2, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
+
+LOW: Container 'my-app' of Deployment 'my-awesome-application' should set 'securityContext.runAsUser' > 10000
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+Force the container to run with user ID > 10000 to avoid conflicts with the host’s user table.
+
+See https://avd.aquasec.com/misconfig/ksv020
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ pro/apps_v1_deployment_my-awesome-application.yaml:51-104
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  51 ┌       - args:
+  52 │         - infinity
+  53 │         command:
+  54 │         - sleep
+  55 │         env:
+  56 │         - name: APP_NAME
+  57 │           value: my-awesome-application
+  58 │         - name: POD_NAME
+  59 └           valueFrom:
+  ..   
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+>>> security scan finished <<<
+
+```
+
 ### Validate resources
 
 To validate the resources generated through the build process with `make validate` command, we use [kubeconform](https://github.com/yannh/kubeconform) tool under the hood.
