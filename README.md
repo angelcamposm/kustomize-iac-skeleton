@@ -89,6 +89,9 @@ Here are some [Kustomize](https://github.com/kubernetes-sigs/kustomize) best pra
 ├── .editorconfig
 ├── .gitattributes
 ├── .gitignore
+├── .trivy.yaml
+├── .yamlfmt.yaml
+├── .yamllint.yaml
 ├── CHANGELOG.md
 ├── CITATION.cff
 ├── CODE_OF_CONDUCT.md
@@ -96,8 +99,10 @@ Here are some [Kustomize](https://github.com/kubernetes-sigs/kustomize) best pra
 ├── CONTRIBUTING.md
 ├── LICENSE.md
 ├── Makefile
-└── README.md
-└── SECURITY.md
+├── NOTICE
+├── README.md
+├── SECURITY.md
+└── STYLE.md
 ```
 
 ### base
