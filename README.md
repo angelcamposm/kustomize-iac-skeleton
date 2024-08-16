@@ -2,6 +2,21 @@
 
 [Kustomization](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/) Skeleton Repository
 
+* [About](#about)
+* [Benefits of using Kustomize](#benefits-of-using-kustomize)
+* [Best Practices](#best-practices)
+* [Structure](#structure)
+* [Usage](#usage)
+	- [Build](#build-resources)
+	- [Format](#format-yaml-resources)
+	- [Lint](#lint-project-resources)
+	- [Scan](#security-scan)
+	- [Validate](#validate-resources)
+* [Contributing](#contributing)
+* [Changelog](#changelog)
+* [Requirements](#requirements)
+* [Maintainers](#maintainers)
+
 ## About
 
 This repository provides a foundational structure for Kubernetes deployments, serving as a starting point for rapid application deployment. It includes a pre-configured Kustomization overlay with essential resources like Deployments, Services, ConfigMaps, and Secrets, providing a solid base for building complex applications.
