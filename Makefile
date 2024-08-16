@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+.DEFAULT_GOAL := help
+
 KUBECONFORM_TOOL := $(shell command -v kubeconform)
 KUSTOMIZE_TOOL := $(shell command -v kustomize)
 TRIVY_TOOL := $(shell command -v trivy)
