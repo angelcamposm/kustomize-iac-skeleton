@@ -2,6 +2,10 @@
 
 This project accepts contributions via [GitHub pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests). This document outlines the process to help get your contribution accepted.
 
+## Coding Guidelines
+
+A consistent coding style is included via [EditorConfig](https://editorconfig.org/) with the file [`.editorconfig`](.editorconfig) at the root of the repo. Depending on your editor of choice, it will either support it out of the box or you can [download a plugin](https://editorconfig.org/#download) for the config to be applied.
+
 ## Issues
 
 Feature requests, bug reports, and support requests all occur through GitHub issues. If you would like to file an issue, view existing issues, or comment on an issue please engage with issues at <https://github.com/angelcamposm/kustomize-iac-skeleton/issues>.
