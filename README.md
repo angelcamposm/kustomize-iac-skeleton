@@ -384,6 +384,7 @@ These are the tools needed to take advantage of the full potential of this skele
 - [kubeconform](https://github.com/yannh/kubeconform) (Only required if you will validate kubernetes resources with this tool)
 - [make](https://www.gnu.org/software/make/) (Only required if you run make commands)
 - [python3](https://www.python.org/) (Only required if you run lint over YAML files)
+- [trivy](https://github.com/aquasecurity/trivy) (Only required if you run security scans over your IaC generated resources)
 - [yamlfmt](https://github.com/google/yamlfmt) (Only required if you run format over YAML files)
 - [yamllint](https://github.com/adrienverge/yamllint) (Only required if you run lint over YAML files)
 
