@@ -297,6 +297,14 @@ Validating DEV overlay resources
 }
 ```
 
+## Contributing
+
+Please see [CONTRIBUTING.md](https://github.com/angelcamposm/kustomize-iac-skeleton/CONTRIBUTING.md) for more details.
+
+## Changelog
+
+The changelog is available on [CHANGELOG.md](https://github.com/angelcamposm/kustomize-iac-skeleton/CHANGELOG.md).
+
 ## Requirements
 
 These are the tools needed to take advantage of the full potential of this skeleton package.
