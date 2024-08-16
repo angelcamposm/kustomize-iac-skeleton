@@ -1,0 +1,15 @@
+exit-code: 0
+format: table
+ignorefile: .trivyignore
+scan:
+  offline-scan: true
+  scanners:
+    - secret
+    - misconfig
+severity:
+  - UNKNOWN
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+timeout: 10m
