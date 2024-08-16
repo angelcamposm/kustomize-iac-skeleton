@@ -2,6 +2,7 @@
 
 KUBECONFORM_TOOL := $(shell command -v kubeconform)
 KUSTOMIZE_TOOL := $(shell command -v kustomize)
+TRIVY_TOOL := $(shell command -v trivy)
 YAMLFMT_TOOL := $(shell command -v yamlfmt)
 YAMLLINT_TOOL := $(shell command -v yamllint)
 
@@ -64,6 +65,12 @@ lint: check-yamllint
 	@echo ">>> lint process finished <<<"
 	@echo
 
+scan: check-trivy
+	$(info Running security scan on all resources using trivy)
+	@trivy fs --scanners vuln,secret,misconfig config/
+	@echo ">>> security scan finished <<<"
+	@echo
+
 validate: check-kubeconform
 	$(info Validating all resources using Kubeconform)
 	@for directory in `ls -L overlays`; \
@@ -102,6 +109,19 @@ check-kustomize: tools-check
 else
 check-kustomize: tools-check
 	@echo " - kustomize [OK]"
+	@echo
+endif
+
+# Check if trivy is installed
+#
+ifeq ("$(TRIVY_TOOL)", "")
+check-trivy: tools-check
+	$(info You must install trivy before building)
+	$(info Please visit: "https://github.com/aquasecurity/trivy/releases")
+	$(error Missing tool trivy)
+else
+check-trivy: tools-check
+	@echo " - trivy [OK]"
 	@echo
 endif
 
