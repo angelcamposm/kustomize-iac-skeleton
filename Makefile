@@ -30,7 +30,7 @@ build: check-kustomize
 			echo "Building $${directory^^} overlay"; \
 			if [[ ! -d "config/$${directory}" ]]; \
 				then \
-					echo " - Create config directory for $${directory^^} overlay"; \
+					echo " - Create a config directory for the $${directory^^} overlay"; \
 					mkdir -p config/$${directory}; \
 				fi \
 				; \
